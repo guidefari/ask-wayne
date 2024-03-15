@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "sst dev",
+    "dev": "sst dev --profile=sst",
+    "be": "sst dev --profile=sst",
+    "fe": "cd packages/frontend && yarn dev",
     "build": "sst build",
     "deploy": "sst deploy",
     "remove": "sst remove",
