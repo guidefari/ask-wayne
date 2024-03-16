@@ -1,19 +1,14 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig } from "astro/config";
+import aws from "astro-sst";
 import svelte from '@astrojs/svelte'
 import mdx from '@astrojs/mdx'
 import remarkGfm from 'remark-gfm'
 import remarkSmartypants from 'remark-smartypants'
 import rehypeExternalLinks from 'rehype-external-links'
-import aws from "astro-sst";
-
 // https://astro.build/config
 export default defineConfig({
-  // site: 'https://astro-blog-template.netlify.app',
   output: "server",
   adapter: aws(),
-  server: {
-    port: 4200,
-  },
   integrations: [mdx(), svelte()],
   markdown: {
     shikiConfig: {
@@ -29,4 +24,7 @@ export default defineConfig({
       ],
     ],
   },
-})
+  server: {
+    port: 4200,
+  }
+});

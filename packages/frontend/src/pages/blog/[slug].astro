@@ -11,9 +11,9 @@ export async function getStaticPaths() {
   }));
 }
 
-const { Content, frontmatter } = Astro.props.post;
+const { Content, frontmatter } = Astro?.props?.post;
 const { title, description, publishDate } = frontmatter;
-const { slug, readingTime } = getPostData(Astro.props.post);
+const { slug, readingTime } = getPostData(Astro?.props?.post);
 const permalink = `${Astro.site.href}blog/${slug}`;
 ---
 

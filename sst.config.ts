@@ -1,5 +1,6 @@
 import { SSTConfig } from "sst";
 import { API } from "./stacks/MyStack";
+import { AstroSite } from "sst/constructs";
 
 export default {
   config(_input) {
@@ -10,5 +11,13 @@ export default {
   },
   stacks(app) {
     app.stack(API);
+    app.stack(function Site({ stack }) {
+      const site = new AstroSite(stack, "site", {
+        path: "packages/frontend",
+      });
+      stack.addOutputs({
+        url: site.url,
+      });
+    });
   }
 } satisfies SSTConfig;
