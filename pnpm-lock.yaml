@@ -118,6 +118,9 @@ importers:
       '@astrojs/svelte':
         specifier: ^5.0.0
         version: 5.2.0(astro@4.5.5)(svelte@4.2.12)(typescript@5.4.2)(vite@5.1.6)
+      '@astrojs/ts-plugin':
+        specifier: ^1.6.0
+        version: 1.6.0
       astro:
         specifier: ^4.0.1
         version: 4.5.5(typescript@5.4.2)
@@ -467,6 +470,9 @@ packages:
   /@aws-cdk/cloud-assembly-schema@2.132.1:
     resolution: {integrity: sha512-PAusB9kKT9CELzbj8x5G3BpFl6Wjwk5ULn+8/uP21MIygWmAcktzOD2CVzkxMvljT7qU4KN1GEDCZXVqLzzomg==}
     engines: {node: '>= 14.15.0'}
+    dependencies:
+      jsonschema: 1.4.1
+      semver: 7.6.0
     dev: true
     bundledDependencies:
       - jsonschema
@@ -517,6 +523,7 @@ packages:
       '@aws-cdk/cloud-assembly-schema': 2.132.1
     dependencies:
       '@aws-cdk/cloud-assembly-schema': 2.132.1
+      semver: 7.6.0
     dev: true
     bundledDependencies:
       - semver
