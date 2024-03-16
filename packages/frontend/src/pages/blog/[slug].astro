@@ -2,19 +2,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Bio from "../../components/Bio.astro";
 import { getCollection } from "astro:content";
-import type { CollectionEntry } from 'astro:content';
 import rt from 'reading-time'
 
 
-interface Props {
-  post: CollectionEntry<'blog'>;
-}
-
-// console.log('yoooo:', postEntries.map((post) => ({
-  //     params: { slug: post.slug },
-  //     props: { post },
-  //   })))
-  
   export const prerender = true;
   export async function getStaticPaths() {
   const postEntries = await getCollection("blog");
@@ -25,18 +15,13 @@ interface Props {
   }));
 }
 
-// console.log('Astro:', Astro)
-
-// console.log('lololo:', Astro)
 const { post } = Astro.props
 const { Content } = await post.render()
 
-// const {  frontmatter } = Astro?.props?.post;
 const { title, description, publishDate } = post.data;
 const readingTime = rt(post.body).text
-
-// const { slug  } = getPostData(Astro?.props?.post);
 const permalink = `${Astro?.site?.href}blog/${post.slug}`;
+
 ---
 
 <BaseLayout
