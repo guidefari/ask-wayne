@@ -4,7 +4,6 @@ import Bio from "../../components/Bio.astro";
 import { getCollection } from "astro:content";
 import rt from 'reading-time'
 
-
   export const prerender = true;
   export async function getStaticPaths() {
   const postEntries = await getCollection("blog");
@@ -31,7 +30,7 @@ const permalink = `${Astro?.site?.href}blog/${post.slug}`;
   current="blog"
 >
   <header>
-    <p>{publishDate} ~ {readingTime}</p>
+    <p>{new Date(publishDate).toLocaleDateString()} ~ {readingTime}</p>
     <h1>{title}</h1>
     <hr />
   </header>

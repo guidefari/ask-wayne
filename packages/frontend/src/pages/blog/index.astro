@@ -24,7 +24,7 @@ const allPosts = postEntries.sort((a, b) => new Date(b.data.publishDate).valueOf
             </h2>
             <p>{post.data.description}</p>
             <div class="post-item-footer">
-              <span class="post-item-date">— {post.data.publishDate}</span>
+              <span class="post-item-date">— {new Date(post.data.publishDate).toLocaleDateString()}</span>
             </div>
           </div>
         </div>
