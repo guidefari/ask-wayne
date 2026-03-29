@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Bio from "../../components/Bio.astro";
+import { getCollection } from "astro:content";
+import rt from 'reading-time'
+
+  export const prerender = true;
+  export async function getStaticPaths() {
+  const postEntries = await getCollection("blog");
+  
+  return postEntries.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props
+const { Content } = await post.render()
+
+const { title, description, publishDate } = post.data;
+const readingTime = rt(post.body).text
+const permalink = `${Astro?.site?.href}blog/${post.slug}`;
+
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="blog"
+>
+  <header>
+    <p>{new Date(publishDate).toLocaleDateString()} ~ {readingTime}</p>
+    <h1>{title}</h1>
+    <hr />
+  </header>
+  <div class="container">
+    <article class="content">
+      <Content />
+    </article>
+    <hr />
+    <Bio />
+  </div>
+</BaseLayout>
+
+<style>
+  header {
+    text-align: center;
+  }
+
+  header h1 {
+    margin-bottom: 0.7em;
+  }
+
+  header p {
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-family: var(--font-family-sans);
+    font-weight: 600;
+  }
+
+  header hr {
+    min-width: 100px;
+    width: 30%;
+  }
+</style>
